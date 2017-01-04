@@ -1,0 +1,23 @@
+<div class="input">
+  <form action="/mat/sok" method="get">
+    <input type="text" name="search" placeholder="Sök" id="food_name">
+    <button type="submit" id="food_search">Sök efter mat</button>
+  </form>
+</div>
+
+<br><br>
+
+<% for result in @results %>
+    <div class="foodlist">
+      <div class="food_picture">
+        "Food picture"
+      </div>
+      <div class="food_info">
+        <a href="/mat/<%=result.id%>"><%= result.name %></a>
+        <br>
+        <div class="food_description">
+          <p><%=result.description%></p>
+        </div>
+      </div>
+    </div>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>Maträtten:</h1>
+
+<% for food in @food %>
+    <h1><%= food.name %></h1>
+    <form class="input" action="/add/<%= food.id %>" method="post">
+      <button>Spara den här maträtten</button>
+    </form>
+<% end %>
+
+<h1>Kommentarsfält:</h1>
+
+<% for comment in @comments %>
+    <h2><%= @users.first(id:comment.user_id).username%>: <%= comment.text %></h2>
+    <% for subcomment in @subcomments %>
+        <% if subcomment.comment_id == comment.id %>
+            <h3><%= @users.first(id: subcomment.user_id).username %>: <%=subcomment.text%></h3>
+        <% end %>
+    <% end %>
+<% end %>

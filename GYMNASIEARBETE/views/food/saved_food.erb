@@ -1,0 +1,14 @@
+<h1>Sparade maträtter:</h1>
+
+<table style="width: 100%">
+  <tr>
+    <th>Namn</th>
+    <th>Beskrivning</th>
+  </tr>
+  <% for food in @savedfood %>
+          <tr>
+            <td><a href="/mat/<%= food.food_id %>"><%= @food.first(id: food.food_id).name %></a></td>
+            <td>klakklakklak</td>
+          </tr>
+  <% end %>
+</table>

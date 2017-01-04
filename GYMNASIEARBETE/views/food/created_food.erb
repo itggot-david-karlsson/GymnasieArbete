@@ -1,0 +1,16 @@
+<h1>Dina skapade maträtter:</h1>
+
+<% for food in @food %>
+  <div class="foodlist">
+    <div class="food_picture">
+      "Food picture"
+    </div>
+    <div class="food_info">
+      <a href="/mat/<%=food.id%>"><%= food.name %></a>
+      <br>
+      <div class="food_description">
+        <p><%=food.description%></p>
+      </div>
+    </div>
+  </div>
+<% end %>

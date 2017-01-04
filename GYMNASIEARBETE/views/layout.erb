@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foodie</title>
+  <link rel="stylesheet" href="/css/site.css" type="text/css" />
+</head>
+<body>
+
+<div id="top">
+  <div id="menu">
+    <ul>
+
+      <li><a href="/">Hem</a></li>
+      <li><a href="/konto/p"><%= @account %></a></li>
+      <li><a href="/mat/sok">Sökning</a></li>
+      <li><a href="/mat/kategorier">Kategorier</a></li>
+      <li><a href="/mat/sparade">Sparade Maträtter</a></li>
+      <li><a href="/mat/skapade">Egna Maträtter</a></li>
+
+    </ul>
+  </div>
+
+  <div id="content_container">
+    <div>
+      <%= yield %>
+    </div>
+  </div>
+
+  <div id="advertisements">
+    <h1>ADS</h1>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <h1>Information om hemsidan:</h1>
+    <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto beatae dolores, excepturi, expedita id laboriosam libero maiores modi natus numquam quas quasi repudiandae sed temporibus ullam ut veniam voluptatum?</span><span>Cupiditate dolor dolorum, fugiat harum hic id illum minima natus officiis, quas quo quod repellendus saepe sunt voluptates! Aliquam architecto at deleniti dolores, illo obcaecati quis. Ipsa magnam numquam veniam!</span><span>Dolore ducimus fuga ipsa iure iusto labore laborum modi necessitatibus neque nisi placeat quia quibusdam reiciendis ut, voluptatibus. Atque ea facere facilis laboriosam quos sed similique sunt tempore velit voluptatem.</span></p>
+  </div>
+</footer>
+
+</body>
+</html>

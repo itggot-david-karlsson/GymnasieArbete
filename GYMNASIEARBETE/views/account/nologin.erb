@@ -1,0 +1,25 @@
+<h2 id="account_message"><%= @message %></h2>
+
+<div id="login">
+  <h3>Har du ett konto redan? Logga in här i så fall!</h3>
+    <div class="input">
+      <form action="/login" method="post">
+        <div class="inputs">
+          <input type="text" name="username" placeholder="Användarnamn">
+          <input type="password" name="password" placeholder="Lösenord">
+        </div>
+        <button type="submit">Log in</button>
+      </form>
+    </div>
+</div>
+
+<div id="register">
+  <h3>Är du ny här? Regristrera här i så fall!</h3>
+    <form action="/register_account" method="post">
+      <div class="input">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+      </div>
+      <button type="submit">Register</button>
+  </form>
+</div>
