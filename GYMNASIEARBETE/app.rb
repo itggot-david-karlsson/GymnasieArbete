@@ -131,9 +131,11 @@ class App < Sinatra::Base
       end
 
   @users = User.all
-  @food = Food.all(id: food_id)
+  @food = Food.first(id: food_id)
   @comments = Comment.all(food_id: food_id)
   @subcomments = Subcomment.all(food_id: food_id)
+  @rating = Rating.first(food_id: food_id)
+
   erb :'food/food_page'
 
   end

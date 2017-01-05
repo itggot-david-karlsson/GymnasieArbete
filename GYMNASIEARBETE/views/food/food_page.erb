@@ -1,11 +1,19 @@
 <h1>Maträtten:</h1>
 
-<% for food in @food %>
-    <h1><%= food.name %></h1>
-    <form class="input" action="/add/<%= food.id %>" method="post">
-      <button>Spara den här maträtten</button>
-    </form>
-<% end %>
+<h1><%= @food.name %></h1>
+<form class="input" action="/add/<%= @food.id %>" method="post">
+  <button>Spara den här maträtten</button>
+</form>
+
+<h1>
+  <%=(@rating.points/@rating.votes)%> / 5
+</h1>
+
+<br><br><br>
+
+<a href="/add5pointsto/<%= @food.id %>">Lägg 5 poäng</a>
+
+<br><br><br>
 
 <h1>Kommentarsfält:</h1>
 

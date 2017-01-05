@@ -6,6 +6,7 @@ class Seeder
     self.savedfoods
     self.comments
     self.subcomments
+    self.ratings
   end
 
   def self.users
@@ -41,6 +42,12 @@ class Seeder
     Subcomment.create(text: "I like trains", comment_id: 1, user_id: 3, food_id: 2)
     Subcomment.create(text: "lalalala", comment_id: 2, user_id: 2, food_id: 2)
     Subcomment.create(text: "yup brah", comment_id: 3, user_id: 3, food_id: 3)
+  end
+
+  def self.ratings
+    Rating.create(points: 7, votes: 2, food_id: 1)
+    Rating.create(points: 0, votes: 0, food_id: 2)
+    Rating.create(points: 0, votes: 0, food_id: 3)
   end
 
 end
