@@ -122,10 +122,10 @@ class App < Sinatra::Base
 
   end
 
-  get '/mat/5p/:id' do |food_id|
+  post '/mat/rate/:id' do |food_id|
 
     rating = Rating.first(food_id: food_id)
-    Rating.first(food_id: food_id).update(points: rating.points + 5.to_f, votes: rating.votes + 1)
+    Rating.first(food_id: food_id).update(points: rating.points + params['rating'].to_f, votes: rating.votes + 1)
 
     redirect "/mat/#{food_id}"
 
@@ -133,19 +133,19 @@ class App < Sinatra::Base
 
   get '/mat/:id' do |food_id|
 
-      if session[:user_id]
-        @account = (User.first(id: session[:user_id])).username
-      else
-        @account = 'Logga in/Regristrera'
-      end
+    if session[:user_id]
+      @account = (User.first(id: session[:user_id])).username
+    else
+      @account = 'Logga in/Regristrera'
+    end
 
-  @users = User.all
-  @food = Food.first(id: food_id)
-  @comments = Comment.all(food_id: food_id)
-  @subcomments = Subcomment.all(food_id: food_id)
-  @rating = Rating.first(food_id: food_id)
+    @users = User.all
+    @food = Food.first(id: food_id)
+    @comments = Comment.all(food_id: food_id)
+    @subcomments = Subcomment.all(food_id: food_id)
+    @rating = Rating.first(food_id: food_id)
 
-  erb :'food/food_page'
+    erb :'food/food_page'
 
   end
 
