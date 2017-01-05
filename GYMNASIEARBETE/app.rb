@@ -122,6 +122,15 @@ class App < Sinatra::Base
 
   end
 
+  get '/mat/5p/:id' do |food_id|
+
+    rating = Rating.first(food_id: food_id)
+    Rating.first(food_id: food_id).update(points: rating.points + 5.to_f, votes: rating.votes + 1)
+
+    redirect "/mat/#{food_id}"
+
+  end
+
   get '/mat/:id' do |food_id|
 
       if session[:user_id]
