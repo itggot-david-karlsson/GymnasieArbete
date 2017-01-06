@@ -85,6 +85,27 @@ h2#account_message {
     max-height: 100%;
 }
 
+#rating_system select {
+    float: left;
+    width: 40%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    margin: 0 5%;
+}
+
+#rating_system button {
+    width: 40%;
+    margin: 0 5%;
+}
+
+#current_rating {
+    text-shadow: 1px 1px lightgray;
+    font-size: 400%;
+    margin: 0 10%;
+}
+
 .food_description {
     width: 100%;
     max-height: 100px;
