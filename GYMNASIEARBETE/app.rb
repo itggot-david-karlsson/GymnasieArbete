@@ -127,6 +127,8 @@ class App < Sinatra::Base
     rating = Rating.first(food_id: food_id)
     Rating.first(food_id: food_id).update(points: rating.points + params['rating'].to_f, votes: rating.votes + 1)
 
+    p Voted.create(status: true, user_id: session[:user_id], food_id: food_id, points: params['rating'])
+    
     redirect "/mat/#{food_id}"
 
   end
@@ -144,6 +146,11 @@ class App < Sinatra::Base
     @comments = Comment.all(food_id: food_id)
     @subcomments = Subcomment.all(food_id: food_id)
     @rating = Rating.first(food_id: food_id)
+    @voted = Voted.first(user_id: session[:user_id], food_id: food_id)
+
+    p @voted
+    p @voted
+    p @voted
 
     erb :'food/food_page'
 

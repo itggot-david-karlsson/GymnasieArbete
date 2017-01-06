@@ -9,5 +9,6 @@ class User
   has n, :food
   has n, :subcomment
   has n, :comment
+  has n, :voted
 
 end

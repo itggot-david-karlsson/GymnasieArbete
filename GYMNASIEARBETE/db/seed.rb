@@ -7,6 +7,7 @@ class Seeder
     self.comments
     self.subcomments
     self.ratings
+    self.voted
   end
 
   def self.users
@@ -48,6 +49,12 @@ class Seeder
     Rating.create(points: 7, votes: 2, food_id: 1)
     Rating.create(points: 0, votes: 0, food_id: 2)
     Rating.create(points: 0, votes: 0, food_id: 3)
+  end
+
+  def self.voted
+    Voted.create(status: false, user_id: 1, food_id: 1, points: 2)
+    Voted.create(status: true, user_id: 1, food_id: 2, points: 2)
+    Voted.create(status: true, user_id: 1, food_id: 3, points: 2)
   end
 
 end

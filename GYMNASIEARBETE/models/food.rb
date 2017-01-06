@@ -9,5 +9,6 @@ class Food
   has n, :savedfood
   has n, :comment
   has n, :subcomment
+  has n, :voted
 
 end
