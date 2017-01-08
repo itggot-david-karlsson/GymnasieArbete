@@ -11,9 +11,9 @@ class Seeder
   end
 
   def self.users
-    User.create(username: 'grill', password: 'korv')
-    User.create(username: 'tester', password: '111')
-    User.create(username: 'david', password: 'xxx')
+    User.create(username: 'grill', password: 'korv', firstname: 'Daniel', lastname: 'Berg', description: 'Gillar diverse korvar')
+    User.create(username: 'tester', password: '111', firstname: 'Test', lastname: 'Grabben', description: 'Testar saker')
+    User.create(username: 'david', password: 'xxx', firstname: 'David', lastname: 'Karlsson', description: 'Jag är cool.')
   end
 
   def self.foods
@@ -46,15 +46,17 @@ class Seeder
   end
 
   def self.ratings
-    Rating.create(points: 7, votes: 2, food_id: 1)
-    Rating.create(points: 0, votes: 0, food_id: 2)
-    Rating.create(points: 0, votes: 0, food_id: 3)
+    Rating.create(points: 15, votes: 3, food_id: 1)
+    Rating.create(points: 2, votes: 0, food_id: 2)
+    Rating.create(points: 2, votes: 0, food_id: 3)
   end
 
   def self.voted
-    Voted.create(status: false, user_id: 1, food_id: 1, points: 2)
-    Voted.create(status: true, user_id: 1, food_id: 2, points: 2)
-    Voted.create(status: true, user_id: 1, food_id: 3, points: 2)
+    Voted.create(user_id: 1, food_id: 1, points: 5)
+    Voted.create(user_id: 2, food_id: 1, points: 5)
+    Voted.create(user_id: 3, food_id: 1, points: 5)
+    Voted.create(user_id: 1, food_id: 2, points: 2)
+    Voted.create(user_id: 1, food_id: 3, points: 2)
   end
 
 end

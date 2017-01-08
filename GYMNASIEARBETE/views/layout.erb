@@ -13,7 +13,11 @@
     <ul>
 
       <li><a href="/">Hem</a></li>
-      <li><a href="/konto/p"><%= @account %></a></li>
+      <% if session[:user_id] %>
+          <li><a href="/konto/min_profil"><%= @account %></a></li>
+      <% else %>
+          <li><a href="/inte_inloggad/p"><%= @account %></a></li>
+      <% end %>
       <li><a href="/mat/sok">Sökning</a></li>
       <li><a href="/mat/kategorier">Kategorier</a></li>
       <li><a href="/mat/sparade">Sparade Maträtter</a></li>

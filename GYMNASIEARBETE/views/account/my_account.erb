@@ -1,0 +1,10 @@
+<h1><%= "#{@profile.firstname} #{@profile.lastname}" %></h1>
+<h3><%= @profile.username %></h3>
+<br><br><br>
+<p><%= @profile.description %></p>
+
+<% if File.exist?("/img/uploads/profile/#{@profile.username}") == true %>
+    <img src="/img/uploads/profile/#{@profile.username}" alt="Mountain View">
+<% else %>
+    <img src="/img/uploads/test/Orange-Whole-&-Split.jpg" alt="shit"> #Temporär - skapa en bild med frågetecken på!
+<% end %>

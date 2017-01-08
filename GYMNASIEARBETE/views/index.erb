@@ -1,1 +1,43 @@
+<form action="/upload" enctype="multipart/form-data" method="post">
+  <label for="file">Bild att ladda upp:</label>
+  <input id="file" type="file" name="file">
+  <input id="submit" type="submit" name="submit" value="Ladda upp bilden!">
+</form>
+
+<div class="col-sm-8 img-upload-section">
+  <input name="image3" type="file" accept="image/*" id="menu_images"/>
+  <img id="menu_image" class="preview_img" />
+  <input type="submit" value="Submit" />
+</div>
+
+<script>
+
+  document.getElementById("menu_images").onchange = function () {
+  var reader = new FileReader();
+  if(this.files[0].size>528385){
+  alert("Image Size should not be greater than 500Kb");
+  $("#menu_image").attr("src","blank");
+  $("#menu_image").hide();
+  $('#menu_images').wrap('<form>').closest('form').get(0).reset();
+    $('#menu_images').unwrap();
+    return false;
+    }
+    if(this.files[0].type.indexOf("image")==-1){
+    alert("Invalid Type");
+    $("#menu_image").attr("src","blank");
+    $("#menu_image").hide();
+    $('#menu_images').wrap('<form>').closest('form').get(0).reset();
+    $('#menu_images').unwrap();
+    return false;
+    }
+    reader.onload = function (e) {
+    document.getElementById("menu_image").src = e.target.result;
+    $("#menu_image").show();
+    };
+
+    reader.readAsDataURL(this.files[0]);
+    };
+
+</script>
+
 <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus assumenda deserunt doloremque ex excepturi rerum similique tempore vel? Consequuntur dolorum esse fugit nihil? Accusamus blanditiis impedit laboriosam molestias non vel.</h2>

@@ -13,20 +13,25 @@ class App < Sinatra::Base
 
   end
 
-  get '/users/:username' do |username|
+  get '/konto/:profile' do |profile|
 
     if session[:user_id]
       @account = (User.first(id: session[:user_id])).username
     else
-      redirect '/account'
+      redirect '/'
     end
 
-    @profile = User.all(username: username)
-    erb :'user_erb/user_profile'
+    if profile == 'min_profil'
+      @profile = User.first(id: session[:user_id])
+      erb :'account/my_account'
+    else
+      @profile = User.first(id: profile)
+      erb :'account/account'
+    end
 
   end
 
-  get '/konto/:message' do |message|
+  get '/inte_inloggad/:message' do |message|
 
     if session[:user_id]
       @account = (User.first(id: session[:user_id])).username
@@ -127,8 +132,21 @@ class App < Sinatra::Base
     rating = Rating.first(food_id: food_id)
     Rating.first(food_id: food_id).update(points: rating.points + params['rating'].to_f, votes: rating.votes + 1)
 
-    p Voted.create(status: true, user_id: session[:user_id], food_id: food_id, points: params['rating'])
-    
+    Voted.create(user_id: session[:user_id], food_id: food_id, points: params['rating'].to_f)
+
+    redirect "/mat/#{food_id}"
+
+  end
+
+  get '/mat/unrate/:id' do |food_id|
+
+    vote = Voted.first(user_id: session[:user_id], food_id: food_id)
+    rating = Rating.first(food_id: food_id)
+
+    Rating.first(food_id: food_id).update(points: rating.points - vote.points, votes: rating.votes - 1)
+
+    Voted.first(user_id: session[:user_id], food_id: food_id).destroy
+
     redirect "/mat/#{food_id}"
 
   end
@@ -162,7 +180,7 @@ class App < Sinatra::Base
       redirect '/konto/usr_exist'
     else
       if params['username'] != '' && params['password'] != ''
-        User.create(username: params['username'], password: params['password'])
+        User.create(username: params['username'], password: params['password'], firstname: params['firstname'], lastname: params['lastname'], description: '')
         redirect '/konto/p'
       elsif params['username'] == ''
         if params['password'] == ''
@@ -214,6 +232,13 @@ class App < Sinatra::Base
     Savedfood.create(user_id: session[:user_id], food_id: food_id)
     redirect '/mat/sparad_mat'
 
+  end
+
+  post '/upload' do
+    File.open('public/img/uploads/test/' + params['file'][:filename], "w") do |f|
+      f.write(params['file'][:tempfile].read)
+    end
+    "Uploaded."
   end
 
 end

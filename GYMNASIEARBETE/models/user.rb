@@ -4,6 +4,9 @@ class User
   property :id, Serial
   property :username, String, required: true, unique: true
   property :password, BCryptHash, required: true
+  property :firstname, String
+  property :lastname, String
+  property :description, Text
 
   has n, :savedfood
   has n, :food
