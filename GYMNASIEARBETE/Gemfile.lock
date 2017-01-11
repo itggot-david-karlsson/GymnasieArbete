@@ -71,6 +71,8 @@ GEM
     do_sqlite3 (0.10.17)
       data_objects (= 0.10.17)
     fastercsv (1.5.5)
+    fastimage (2.0.1)
+      addressable (~> 2)
     ffi (1.9.10)
     json (1.8.3)
     json_pure (1.8.3)
@@ -147,6 +149,7 @@ DEPENDENCIES
   data_mapper
   dm-postgres-adapter
   dm-sqlite-adapter
+  fastimage
   pry-byebug
   puma
   racksh

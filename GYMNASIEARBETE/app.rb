@@ -235,10 +235,23 @@ class App < Sinatra::Base
   end
 
   post '/upload' do
-    File.open('public/img/uploads/test/' + params['file'][:filename], "w") do |f|
+
+    directory_name = "public/img/uploads/test/#{session[:user_id]}/"
+    Dir.mkdir(directory_name) unless File.exists?(directory_name)
+
+    File.open("public/img/uploads/test/#{session[:user_id]}/" + params['file'][:filename], "w") do |f|
       f.write(params['file'][:tempfile].read)
     end
-    "Uploaded."
+
+    File.rename("public/img/uploads/test/#{session[:user_id]}/" + params['file'][:filename], "public/img/uploads/test/#{session[:user_id]}/" + session[:user_id].to_s + ".jpg")
+
+    if FastImage.size("public/img/uploads/test/#{session[:user_id]}/" + session[:user_id].to_s + ".jpg") == [300, 300] && FastImage.type("public/img/uploads/test/#{session[:user_id]}/" + session[:user_id].to_s + ".jpg") == :jpeg
+      "Uploaded."
+    else
+      File.delete("public/img/uploads/test/#{session[:user_id]}/" + session[:user_id].to_s + ".jpg")
+      "Too large resolution or not the correct filetype"
+    end
+
   end
 
 end

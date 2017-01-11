@@ -8,6 +8,8 @@ gem 'data_mapper'
 gem 'tilt', '~> 1.4.1' #temporary fix
 gem 'racksh'
 
+gem 'fastimage'
+
 # Used during local development (on your own machine)
 group :development do
 
