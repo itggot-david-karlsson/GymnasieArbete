@@ -2,6 +2,7 @@ class Seeder
 
   def self.seed!
     self.users
+    self.categories
     self.foods
     self.savedfoods
     self.comments
@@ -11,15 +12,20 @@ class Seeder
   end
 
   def self.users
-    User.create(username: 'grill', password: 'korv', firstname: 'Daniel', lastname: 'Berg', description: 'Gillar diverse korvar')
-    User.create(username: 'tester', password: '111', firstname: 'Test', lastname: 'Grabben', description: 'Testar saker')
-    User.create(username: 'david', password: 'xxx', firstname: 'David', lastname: 'Karlsson', description: 'Jag är cool.')
+    User.create(username: 'grill', password: 'korv', firstname: 'Daniel', lastname: 'Berg', description: 'Gillar diverse korvar', picture: '/img/uploads/test/Orange-Whole-&-Split.jpg')
+    User.create(username: 'tester', password: '111', firstname: 'Test', lastname: 'Grabben', description: 'Testar saker', picture: '/img/uploads/test/Orange-Whole-&-Split.jpg')
+    User.create(username: 'david', password: 'xxx', firstname: 'David', lastname: 'Karlsson', description: 'Jag är cool.', picture: '/img/uploads/test/Orange-Whole-&-Split.jpg')
+  end
+
+  def self.categories
+    Category.create(name: 'Kött')
+    Category.create(name: 'Grönsaker')
   end
 
   def self.foods
-    Food.create(name: 'KKK', instruction: 'Ku Klux Klan', user_id: 1, description: "aja baja")
-    Food.create(name: 'XXX', instruction: 'Xu Xlux Xlan', user_id: 3, description: "niiiiiice")
-    Food.create(name: 'ZZZ', instruction: 'Zu Zlux Zlan', user_id: 2, description: "shiiiiize")
+    Food.create(name: 'KKK', instruction: 'Ku Klux Klan', user_id: 1, description: "aja baja", category_id: 1)
+    Food.create(name: 'XXX', instruction: 'Xu Xlux Xlan', user_id: 3, description: "niiiiiice", category_id: 1)
+    Food.create(name: 'ZZZ', instruction: 'Zu Zlux Zlan', user_id: 2, description: "shiiiiize", category_id: 2)
   end
 
   def self.savedfoods

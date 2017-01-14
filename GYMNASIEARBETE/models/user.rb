@@ -7,6 +7,7 @@ class User
   property :firstname, String
   property :lastname, String
   property :description, Text
+  property :picture, String
 
   has n, :savedfood
   has n, :food

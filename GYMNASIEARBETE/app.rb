@@ -127,6 +127,12 @@ class App < Sinatra::Base
 
   end
 
+  get '/mat/kategorier' do
+
+  "WIP"
+
+  end
+
   post '/mat/rate/:id' do |food_id|
 
     rating = Rating.first(food_id: food_id)
@@ -249,6 +255,27 @@ class App < Sinatra::Base
       "Uploaded."
     else
       File.delete("public/img/uploads/test/#{session[:user_id]}/" + session[:user_id].to_s + ".jpg")
+      "Too large resolution or not the correct filetype"
+    end
+
+  end
+
+  post '/profile_pic/upload' do
+
+    directory_name = "./public/img/uploads/profile/#{session[:user_id]}/"
+
+    Dir.mkdir(directory_name) unless Dir.exists?(directory_name)
+
+    File.open(directory_name + params['file'][:filename], "w") do |f|
+      f.write(params['file'][:tempfile].read)
+    end
+
+    if FastImage.size(directory_name + params['file'][:filename]) == [300, 300] && FastImage.type(directory_name + params['file'][:filename]) == :jpeg
+      File.rename(directory_name + params['file'][:filename], directory_name + session[:user_id].to_s + ".jpg")
+      User.first(id: session[:user_id]).update(picture: "/img/uploads/profile/#{session[:user_id]}/#{session[:user_id]}.jpg")
+      "Uploaded."
+    else
+      File.delete(directory_name + params['file'][:filename])
       "Too large resolution or not the correct filetype"
     end
 

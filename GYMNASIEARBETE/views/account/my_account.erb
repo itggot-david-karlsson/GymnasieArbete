@@ -3,8 +3,36 @@
 <br><br><br>
 <p><%= @profile.description %></p>
 
-<% if File.exist?("/img/uploads/profile/#{@profile.username}") == true %>
-    <img src="/img/uploads/profile/#{@profile.username}" alt="Mountain View">
-<% else %>
-    <img src="/img/uploads/test/Orange-Whole-&-Split.jpg" alt="shit"> #Temporär - skapa en bild med frågetecken på!
-<% end %>
+<img src=<%= @profile.picture %> alt="<%= @profile.id %>.jpg">
+
+<h1><%= "/img/uploads/profile/#{@profile.id}/#{@profile.id}.jpg" %></h1>
+
+<form action="/profile_pic/upload" enctype="multipart/form-data" method="post">
+  <input name="file" type="file" accept="image/*" id="files"/>
+  <img id="image_file" class="preview_img" />
+  <input type="submit" value="Ladda upp bilden" />
+</form>
+
+<script>
+
+  document.getElementById("files").onchange = function () {
+    var reader = new FileReader();
+    if(this.files[0].size>528385){
+      alert("Bilden bör inte ha en storlek över 500Kb");
+      document.getElementById("files").value=""; //clear the uploaded file
+      return false;
+    }
+    if(this.files[0].type.indexOf("image")==-1){
+      alert("Filen du har valt är inte en bild");
+      document.getElementById("files").value="";
+      return false;
+    }
+    reader.onload = function (e) {
+      document.getElementById("file").src = e.target.result;
+      $("#file").show();
+    };
+
+    reader.readAsDataURL(this.files[0]);
+  };
+
+</script>
