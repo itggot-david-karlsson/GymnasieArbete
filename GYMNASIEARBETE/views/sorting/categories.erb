@@ -1,0 +1,5 @@
+<ul>
+  <% for category in @categories %>
+    <li><a href="/kategorier/<%= category.name %>"><%= category.name %></a></li>
+  <% end %>
+</ul>

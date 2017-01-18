@@ -94,7 +94,7 @@ class App < Sinatra::Base
 
     @results = Food.all(:name.like => params['search'])
 
-    erb :'food/food_results'
+    erb :'sorting/food_results'
 
   end
 
@@ -127,9 +127,46 @@ class App < Sinatra::Base
 
   end
 
-  get '/mat/kategorier' do
+  get '/mat/skapa_ny' do
 
-  "WIP"
+    if session[:user_id]
+      @account = (User.first(id: session[:user_id])).username
+    else
+      redirect '/'
+    end
+
+    @categories = Category.all
+
+    erb :'food/new_food'
+
+  end
+
+  get '/kategorier/alla_kategorier' do
+
+    if session[:user_id]
+      @account = (User.first(id: session[:user_id])).username
+    else
+      @account = "Logga in/regristrera"
+    end
+
+    @categories = Category.all
+
+    erb :'sorting/categories'
+
+  end
+
+  get '/kategorier/:id' do |category_name|
+
+    if session[:user_id]
+      @account = (User.first(id: session[:user_id])).username
+    else
+      @account = "Logga in/regristrera"
+    end
+
+    @category = Category.first(name: category_name)
+    @food = Food.all(category_id: @category.id)
+
+    erb :'sorting/category_list'
 
   end
 
@@ -237,6 +274,14 @@ class App < Sinatra::Base
 
     Savedfood.create(user_id: session[:user_id], food_id: food_id)
     redirect '/mat/sparad_mat'
+
+  end
+
+  post '/create_food' do
+
+    Food.create(name: params['name'], instruction: params['instruction'], user_id: session[:user_id], description: params['description'], category_id: params['category'], ingredients: params['ingredients'])
+
+    redirect '/mat/skapade'
 
   end
 

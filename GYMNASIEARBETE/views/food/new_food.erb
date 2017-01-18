@@ -1,0 +1,15 @@
+<h3>Skapa skiten:</h3>
+<form action="/create_food" method="post">
+  <div class="input">
+    <input type="text" name="name" placeholder="Namn">
+    <textarea name="description" placeholder="Beskrivning"></textarea>
+    <textarea name="ingredients" placeholder="Ingredienser"></textarea>
+    <textarea name="instruction" placeholder="Tillagning"></textarea>
+    <select name="category">
+      <% @categories.each do |category| %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <button type="submit">Skapa</button>
+</form>

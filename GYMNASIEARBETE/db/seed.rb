@@ -23,9 +23,9 @@ class Seeder
   end
 
   def self.foods
-    Food.create(name: 'KKK', instruction: 'Ku Klux Klan', user_id: 1, description: "aja baja", category_id: 1)
-    Food.create(name: 'XXX', instruction: 'Xu Xlux Xlan', user_id: 3, description: "niiiiiice", category_id: 1)
-    Food.create(name: 'ZZZ', instruction: 'Zu Zlux Zlan', user_id: 2, description: "shiiiiize", category_id: 2)
+    Food.create(name: 'KKK', instruction: 'Ku Klux Klan', user_id: 1, description: "aja baja", category_id: 1, ingredients: 'choklad')
+    Food.create(name: 'XXX', instruction: 'Xu Xlux Xlan', user_id: 3, description: "niiiiiice", category_id: 1, ingredients: 'choklad mm')
+    Food.create(name: 'ZZZ', instruction: 'Zu Zlux Zlan', user_id: 2, description: "shiiiiize", category_id: 2, ingredients: 'choklad o sånt')
   end
 
   def self.savedfoods

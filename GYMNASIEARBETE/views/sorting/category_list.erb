@@ -1,10 +1,6 @@
-<h1>Dina skapade maträtter:</h1>
+<h1><%= @category.name %></h1>
 
-<br><br><br>
-
-<h1><a href="/mat/skapa_ny">Skapa en ny maträtt!</a></h1>
-
-<% for food in @food %>
+<% @food.each do |food| %>
   <div class="foodlist">
     <div class="food_picture">
       "Food picture"
