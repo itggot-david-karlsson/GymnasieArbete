@@ -1,5 +1,8 @@
 <ul>
   <% for category in @categories %>
-    <li><a href="/kategorier/<%= category.name %>"><%= category.name %></a></li>
+    <div class="category-wrapper">
+      <a href="/kategorier/<%= category.name %>" alt="<%= category.name %>" class="js-mxp" data-mxptype="Category" data-mxptext="<%= category.name %>">
+        <img src="<%= category.picture %>" alt="<%= category.name %>" data-title="" title="">
+      </a>
   <% end %>
 </ul>

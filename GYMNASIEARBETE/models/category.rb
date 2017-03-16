@@ -3,7 +3,7 @@ class Category
 
   property :id, Serial
   property :name, String
-  #property :picture, String <-- Skapa bilder senare
+  property :picture, String
 
   has n, :food
 

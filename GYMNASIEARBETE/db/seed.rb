@@ -18,8 +18,8 @@ class Seeder
   end
 
   def self.categories
-    Category.create(name: 'Kött')
-    Category.create(name: 'Grönsaker')
+    Category.create(name: 'Kött', picture: '/img/categories/Kott_test.png')
+    Category.create(name: 'Grönsaker', picture: '/img/categories/Gronsaker_test.png')
   end
 
   def self.foods

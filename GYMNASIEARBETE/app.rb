@@ -13,6 +13,15 @@ class App < Sinatra::Base
 
   end
 
+  get '/konto/edit' do
+
+    @account = (User.first(id: session[:user_id])).username
+    @profile = User.first(id: session[:user_id])
+
+    erb :'account/account_edit'
+
+  end
+
   get '/konto/:profile' do |profile|
 
     if session[:user_id]
