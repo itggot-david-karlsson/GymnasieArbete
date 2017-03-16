@@ -53,8 +53,8 @@ class Seeder
 
   def self.ratings
     Rating.create(points: 15, votes: 3, food_id: 1)
-    Rating.create(points: 2, votes: 0, food_id: 2)
-    Rating.create(points: 2, votes: 0, food_id: 3)
+    Rating.create(points: 0, votes: 0, food_id: 2)
+    Rating.create(points: 2, votes: 1, food_id: 3)
   end
 
   def self.voted

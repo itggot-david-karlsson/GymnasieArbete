@@ -1,4 +1,5 @@
 html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color: white;
@@ -6,22 +7,18 @@ html, body {
 
 h2#account_message {
     text-align: center;
-    color: white;
-    background-color: black;
 }
 
 #content_container #login {
     text-align: center;
     float: left;
     width: 50%;
-    background-color: blue;
 }
 
 #content_container #register {
     text-align: center;
     float: left;
     width: 50%;
-    background-color: antiquewhite;
 }
 
 #content_container button {
@@ -137,15 +134,15 @@ h2#account_message {
 }
 
 #top {
+    margin: 0 auto;
     float: left;
     width: 100%;
-    background-color: black;
+    background-color: white;
 }
 
 #menu {
     float: left;
     width: 18%;
-    background-color: white;
 }
 
 #menu ul {
@@ -173,20 +170,31 @@ h2#account_message {
 
 #content_container {
     float: left;
-    width: 64%;
-    background-color: green;
+    border-left:1%;
+    border-right:1%;
+    border: solid;
+    border-top: none;
+    border-color: red;
+    width: 60%;
+    padding: 1%;
+    background-color: antiquewhite;
 }
 
 #advertisements {
     float: left;
     width: 18%;
-    background-color: yellow;
 }
 
 footer {
+    position: relative;
+    margin-top: 180px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
     float: left;
     width: 100%;
-    background-color: blue;
+    background-color: lightgrey;
 }
 
 a {

@@ -6,5 +6,6 @@ class Comment
 
   has n, :subcomment
   belongs_to :food
+  belongs_to :user
 
 end

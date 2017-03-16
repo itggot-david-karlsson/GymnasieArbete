@@ -209,6 +209,18 @@ class App < Sinatra::Base
     @rating = Rating.first(food_id: food_id)
     @voted = Voted.first(user_id: session[:user_id], food_id: food_id)
 
+    rating = Rating.first(food_id: food_id)
+
+    rate = rating.points/rating.votes
+    puts rate
+    puts rate
+    puts rate
+    if rate.to_s == "Infinity"
+      @rate = "-"
+    else
+      @rate = rate.to_i
+    end
+
     p @voted
     p @voted
     p @voted
@@ -318,12 +330,33 @@ class App < Sinatra::Base
     if FastImage.size(directory_name + params['file'][:filename]) == [300, 300] && FastImage.type(directory_name + params['file'][:filename]) == :jpeg
       File.rename(directory_name + params['file'][:filename], directory_name + session[:user_id].to_s + ".jpg")
       User.first(id: session[:user_id]).update(picture: "/img/uploads/profile/#{session[:user_id]}/#{session[:user_id]}.jpg")
-      "Uploaded."
+      redirect "/konto/#{session[:user_id]}"
     else
       File.delete(directory_name + params['file'][:filename])
       "Too large resolution or not the correct filetype"
     end
 
   end
+
+  post '/postcomment/:id' do |food_id|
+
+    puts params['comment']
+    puts session[:user_id]
+    puts food_id
+
+    Comment.create(text: params['comment'], food_id: food_id, user_id: session[:user_id])
+
+  end
+
+  post '/postsubcomment/:id' do |food_id|
+
+    puts params['comment']
+    puts session[:user_id]
+    puts food_id
+
+    Comment.create(text: params['comment'], food_id: food_id, user_id: session[:user_id])
+
+  end
+
 
 end

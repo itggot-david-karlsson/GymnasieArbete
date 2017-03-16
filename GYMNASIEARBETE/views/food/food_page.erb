@@ -5,17 +5,35 @@
   <button>Spara den här maträtten</button>
 </form>
 
-<h1>
-  <%=(@rating.points/@rating.votes)%> / 5
+<h1 id="current_rating">
+  <%= @rate %> / 5
 </h1>
 
-<br><br><br>
+<% if @voted != nil %>
+    <h1>Du har redan röstat</h1>
+    <a href="/mat/unrate/<%=@food.id%>">Ta bort min röst</a>
 
-<a href="/mat/5p/<%= @food.id %>">Lägg 5 poäng</a>
+<% else %>
+    <div id="rating_system">
+      <form action="/mat/rate/<%= @food.id %>" method="post">
+        <select name="rating">
+          <option value= 1.to_f >1 - Uselt, avråder starkt</option>
+          <option value= 2.to_f >2 - Inte god, rekommenderas ej</option>
+          <option value= 3.to_f >3 - God, rekommenderas</option>
+          <option value= 4.to_f >4 - Mycket god, rekommenderas</option>
+          <option value= 5.to_f >5 - Godare är inte möjligt, rekommenderas starkt</option>
+        </select>
+        <button>Betygsätt</button>
+      </form>
+    </div>
+
+<% end %>
 
 <br><br><br>
 
 <h1>Kommentarsfält:</h1>
+
+<form action="/postcomment/<%= @food.id %>" method="post"><input type="text" name="comment" placeholder="Kommentera..."><button type="submit">Kommentera</button></form>
 
 <% for comment in @comments %>
     <h2><%= @users.first(id:comment.user_id).username%>: <%= comment.text %></h2>
@@ -24,4 +42,5 @@
             <h3><%= @users.first(id: subcomment.user_id).username %>: <%=subcomment.text%></h3>
         <% end %>
     <% end %>
+    <form action="/postsubcomment/<%= @food.id %>" method="post"><input type="text" name="comment" placeholder="Kommentera..."><button type="submit">Kommentera</button></form>
 <% end %>

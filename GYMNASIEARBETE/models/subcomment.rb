@@ -5,5 +5,6 @@ class Subcomment
   property :text, Text, required: true
 
   belongs_to :comment
+  belongs_to :user
 
 end
