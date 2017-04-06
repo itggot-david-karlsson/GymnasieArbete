@@ -200,3 +200,40 @@ footer {
 a {
     text-decoration: none;
 }
+
+@media (max-width: 600px) {
+
+    #menu {
+        float: left;
+        width: 100%;
+    }
+
+    #content_container {
+        float: left;
+        border-left:1%;
+        border-right:1%;
+        border: solid;
+        border-color: red;
+        width: 94%;
+        padding: 1%;
+        background-color: antiquewhite;
+    }
+
+    #advertisements {
+        float: left;
+        width: 100%;
+    }
+
+    #content_container #login {
+        text-align: center;
+        float: left;
+        width: 100%;
+    }
+
+    #content_container #register {
+        text-align: center;
+        float: left;
+        width: 100%;
+    }
+
+}

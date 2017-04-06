@@ -1,6 +1,7 @@
 <h1>Maträtten:</h1>
 
 <h1><%= @food.name %></h1>
+<p><%= @food.description %></p>
 <form class="input" action="/add/<%= @food.id %>" method="post">
   <button>Spara den här maträtten</button>
 </form>
