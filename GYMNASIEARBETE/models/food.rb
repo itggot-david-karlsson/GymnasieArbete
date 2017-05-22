@@ -10,7 +10,6 @@ class Food
   belongs_to :user
   has n, :savedfood
   has n, :comment
-  has n, :subcomment
   has n, :voted
 
 end

@@ -44,11 +44,11 @@ class Seeder
   end
 
   def self.subcomments
-    Subcomment.create(text: "Aa visst", comment_id: 1, user_id: 1, food_id: 1)
-    Subcomment.create(text: "mhmmm", comment_id: 1, user_id: 2, food_id: 1)
-    Subcomment.create(text: "I like trains", comment_id: 1, user_id: 3, food_id: 2)
-    Subcomment.create(text: "lalalala", comment_id: 2, user_id: 2, food_id: 2)
-    Subcomment.create(text: "yup brah", comment_id: 3, user_id: 3, food_id: 3)
+    Subcomment.create(text: "Aa visst", comment_id: 1, user_id: 1)
+    Subcomment.create(text: "mhmmm", comment_id: 1, user_id: 2)
+    Subcomment.create(text: "I like trains", comment_id: 1, user_id: 3)
+    Subcomment.create(text: "lalalala", comment_id: 2, user_id: 2)
+    Subcomment.create(text: "yup brah", comment_id: 3, user_id: 3)
   end
 
   def self.ratings

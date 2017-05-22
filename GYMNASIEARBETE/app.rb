@@ -214,8 +214,18 @@ class App < Sinatra::Base
     @users = User.all
     @food = Food.first(id: food_id)
     @comments = Comment.all(food_id: food_id)
-    @subcomments = Subcomment.all(food_id: food_id)
+    @subcomments = Subcomment.all
     @rating = Rating.first(food_id: food_id)
+
+    if @rating.to_s == ""
+    Rating.create(points: 0, votes: 1, food_id: food_id)
+    @rating = Rating.first[food_id: 1]
+    Rating.first(food_id: food_id).update(votes: 0)
+
+    elsif @rating.votes == 0
+      @rating.votes = 1
+    end
+
     @voted = Voted.first(user_id: session[:user_id], food_id: food_id)
 
     rating = Rating.first(food_id: food_id)
@@ -225,6 +235,8 @@ class App < Sinatra::Base
     puts rate
     puts rate
     if rate.to_s == "Infinity"
+      @rate = "-"
+    elsif rate.to_s == "NaN"
       @rate = "-"
     else
       @rate = rate.to_i
@@ -355,15 +367,21 @@ class App < Sinatra::Base
 
     Comment.create(text: params['comment'], food_id: food_id, user_id: session[:user_id])
 
+    redirect "/mat/#{food_id}"
+
   end
 
-  post '/postsubcomment/:id' do |food_id|
+  post '/postsubcomment/:id' do |comment_id|
 
     puts params['comment']
     puts session[:user_id]
-    puts food_id
 
-    Comment.create(text: params['comment'], food_id: food_id, user_id: session[:user_id])
+    Subcomment.create(text: params['comment'],comment_id: comment_id, user_id: session[:user_id])
+
+    redirect "/mat/#{Comment.first(id:comment_id).food_id}"
+    puts "/mat/#{Comment.first(id:comment_id).food_id}"
+    puts "/mat/#{Comment.first(id:comment_id).food_id}"
+    puts "/mat/#{Comment.first(id:comment_id).food_id}"
 
   end
 
