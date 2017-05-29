@@ -20,9 +20,10 @@
       <% end %>
       <li><a href="/mat/sok">Sökning</a></li>
       <li><a href="/kategorier/alla_kategorier">Kategorier</a></li>
-      <li><a href="/mat/sparade">Sparade Maträtter</a></li>
-      <li><a href="/mat/skapade">Egna Maträtter</a></li>
-
+      <% if session[:user_id] %>
+          <li><a href="/mat/sparade">Sparade Maträtter</a></li>
+          <li><a href="/mat/skapade">Egna Maträtter</a></li>
+      <% end %>
     </ul>
   </div>
 
